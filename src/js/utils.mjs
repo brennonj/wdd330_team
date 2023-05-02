@@ -22,27 +22,33 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener('click', callback);
 }
 
-export function getParam(param) {
+export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = 'afterbegin',
+  clear = false
+) {
   const html = list.map(templateFn);
   if (clear) {
-    parentElement.innerHTML = "";
+    parentElement.innerHTML = '';
   }
   if (html && parentElement) {
-    parentElement.insertAdjacentHTML(position, html.join(""));
+    parentElement.insertAdjacentHTML(position, html.join(''));
   }
 }
 
 export function countCartContents() {
   const items = getLocalStorage('so-cart');
-  let qty = 0
+  let qty = 0;
   if (items) {
     items.forEach((item) => (qty += item.Quantity));
-    document.querySelector('.cart-count').innerHTML = qty;
   }
+  document.querySelector('.cart-count').innerHTML = qty;
 }
