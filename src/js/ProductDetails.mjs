@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, countCartContents } from './utils.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -7,48 +7,57 @@ export default class ProductDetails {
     this.dataSource = dataSource;
   }
 
-  async init() {
-    // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    this.product = await this.dataSource.findProductById(this.productId);
-    // once we have the product details we can render out the HTML
-    this.renderProductDetails();
-    // once the HTML is rendered we can add a listener to Add to Cart button
-    // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-    const cart = document.getElementById('addToCart');
-    cart.addEventListener('click', this.addProductToCart.bind(this));
-  }
 
-  addProductToCart() {
-    //First get what is already in localStorage and assign it to a variable (if there is anything, it will come back as an array):
-    let cart = getLocalStorage('so-cart');
-    //if there was no "cart" already, like you didn't have anything yet, then create an empty array:
-    if (!cart) {
-      cart = [];
+    async init() {
+        this.product = await this.dataSource.findProductById(this.productId);
+        this.renderProductDetails("main");
+        document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
     }
-    //now we push the product that the user clicked on with "addtoCart" button to the end of the array
-    cart.push(this.product);
-    //and then setLocalStorage with the new contents of the cart:
-    setLocalStorage('so-cart', cart);
-  }
 
-  renderProductDetails() {
-    let temp = document.getElementById('productDetail');
-    let clone = temp.content.cloneNode(true);
+    addProductToCart(product) {
+        //First get what is already in localStorage and assign it to a variable (if there is anything, it will come back as an array):
+        let cart = getLocalStorage('so-cart');
+        //if there was no "cart" already, like you didn't have anything yet, then create an empty array:
+        if (!cart) {cart = [];}
+        let cartQty = 0;
+        let cartIndex = (cart.findIndex(({ Id }) => Id === this.productId));
+        if (cartIndex > -1) {
+            cartQty = cart[cartIndex].Quantity;
+            cart[cartIndex].Quantity = cartQty + 1;
+        } else{
+            let item = this.product;
+            item.Quantity = 1;
+            cart.push(item);
+        }
+        
+        setLocalStorage('so-cart', cart);
+        countCartContents();
+    }
+    
+    renderProductDetails(selector) {
+        const element = document.querySelector(selector);
+        element.insertAdjacentHTML(
+        "afterBegin",
+        productDetailsTemplate(this.product)
+        );
+    }}
 
-    clone.getElementById('productBrand').textContent = this.product.Brand.Name;
-    clone.getElementById('productName').textContent =
-      this.product.NameWithoutBrand;
-    clone.getElementById('productImg').src = this.product.Image;
-    clone.getElementById('productImg').alt = this.product.NameWithoutBrand;
-    clone.getElementById(
-      'productPrice'
-    ).textContent = `$${this.product.FinalPrice}`;
-    clone.getElementById('productColor').textContent =
-      this.product.Colors[0].ColorName;
-    clone.getElementById('productDescription').innerHTML =
-      this.product.DescriptionHtmlSimple;
-    clone.getElementById('addToCart').setAttribute('data-id', this.product.Id);
-
-    document.getElementsByTagName('main')[0].appendChild(clone);
-  }
+    function productDetailsTemplate(product) {
+        return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
+        <h2 class="divider">${product.NameWithoutBrand}</h2>
+        <img
+        class="divider"
+        src="${product.Image}"
+        alt="${product.NameWithoutBrand}"
+        />
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product__color">${product.Colors[0].ColorName}</p>
+        <p class="product__description">
+        ${product.DescriptionHtmlSimple}
+        </p>
+        <div class="product-detail__add">
+        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+        </div></section>`;
+        }
 }
+

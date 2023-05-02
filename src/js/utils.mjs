@@ -27,3 +27,22 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const html = list.map(templateFn);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  if (html && parentElement) {
+    parentElement.insertAdjacentHTML(position, html.join(""));
+  }
+}
+
+export function countCartContents() {
+  const items = getLocalStorage('so-cart');
+  let qty = 0
+  if (items) {
+    items.forEach((item) => (qty += item.Quantity));
+    document.querySelector('.cart-count').innerHTML = qty;
+  }
+}
