@@ -7,9 +7,7 @@ let element = document.querySelector('.product-list');
 if (element === undefined) {
   element = document.querySelector('.cart-product-list');
 }
-const listing = new ProductListing('Tents', dataSource, element);
-
 loadHeaderFooter();
-
+const listing = new ProductListing('Tents', dataSource, element);
 listing.init();
-countCartContents();
+

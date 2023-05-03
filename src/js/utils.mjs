@@ -44,8 +44,14 @@ export function renderListWithTemplate(
   }
 }
 
-export function renderWithTemplate(template, parent, data, callback) {
-  parent.insertAdjacentHTML('afterbegin', template);
+export function renderWithTemplate(
+  template,
+  parent,
+  callback,
+  data,
+  position = 'afterbegin'
+) {
+  parent.insertAdjacentHTML(position, template);
   if (callback) {
     callback(data);
   }
@@ -60,32 +66,19 @@ export function countCartContents() {
   document.querySelector('.cart-count').innerHTML = qty;
 }
 
-async function convertToText(res) {
+export async function loadTemplate(path) {
+  const res = await fetch(path);
   if (res.ok) {
     return await res.text();
-  } else {
-    throw new Error('Bad Response');
   }
 }
 
-export async function loadTemplate(path) {
-  const data = await fetch(path);
-  const html = await data.text();
-  const template = document.createElement('template');
-  template.innerHTML = `${html}`;
-  return template;
-}
-
 export async function loadHeaderFooter() {
-  // debugger;
-  const header = await loadTemplate('../partials/header.html');
-  const footer = await loadTemplate('../partials/footer.html');
-
+  const headerTemplate = await loadTemplate('../partials/header.html');
   const headerHtml = qs('#main-header');
+  renderWithTemplate(headerTemplate, headerHtml, countCartContents);
+
+  const footerTemplate = await loadTemplate('../partials/footer.html');
   const footerHtml = qs('#main-footer');
-
-  headerHtml.appendChild(header);
-
-  // renderWithTemplate(header, headerHtml);
-  // renderWithTemplate(footer, footerHtml);
+  renderWithTemplate(footerTemplate, footerHtml, countCartContents);
 }
