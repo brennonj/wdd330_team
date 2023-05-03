@@ -80,5 +80,5 @@ export async function loadHeaderFooter() {
 
   const footerTemplate = await loadTemplate('../partials/footer.html');
   const footerHtml = qs('#main-footer');
-  renderWithTemplate(footerTemplate, footerHtml, countCartContents);
+  renderWithTemplate(footerTemplate, footerHtml);
 }
