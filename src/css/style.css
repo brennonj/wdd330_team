@@ -118,8 +118,8 @@ button {
   padding: 0.25em;
   border-radius: 50%;
   font-size: 0.7em;
-  top: 0;
-  left: 4px;
+  top: 5px;
+  left: 13px;
 }
 /* End cart icon styles */
 
@@ -130,6 +130,25 @@ button {
   max-width: 600px;
   margin: auto;
 }
+
+.product-categories {
+  display: flex;
+  justify-content: space-between;
+  margin: 70px 0;
+}
+
+.product-categories img {
+  width: 250px;
+  height: 250px;
+}
+
+.product-categories img:hover {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px rgb(163, 163, 163);
+}
+
 .products {
   padding: 0.5em;
 }

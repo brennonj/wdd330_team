@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate } from './utils.mjs';
 
 export default class ProductListing {
   constructor(category, dataSource, listElement) {
@@ -8,15 +8,23 @@ export default class ProductListing {
   }
   async init() {
     const list = await this.dataSource.getData();
-    // list = list.filter(filterResults);
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+    const filterResults = this.filterResults(list);
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      filterResults
+    );
   }
 
+  filterResults(arr) {
+    const filterCriteria = ['880RR', '985RF', '985PR', '344YJ'];
+    return filterCriteria.map((id) => arr.filter((item) => item.Id === id)[0]);
+  }
 }
 
 function productCardTemplate(product) {
   return `<li class="product-card">
-  <a href="product_pages/index.html?product=${product.Id}">
+  <a href="/product_pages/index.html?product=${product.Id}">
   <img
     src="${product.Image}"
     alt="Image of ${product.Name}"
@@ -26,10 +34,3 @@ function productCardTemplate(product) {
   <p class="product-card__price">$${product.FinalPrice}</p></a>
 </li>`;
 }
-
-// function filterResults(item) {
-//   const filterCriteria = ["880RR", "985RF", "985PR", "344YJ"];
-//   let Id = toString(item.Id);
-//   console.log(filterCriteria.find(Id));
-//   return !(filterCriteria.find(item.Id)) === undefined;
-// }
