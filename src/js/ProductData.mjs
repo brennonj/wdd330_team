@@ -18,7 +18,6 @@ export default class ProductData {
   async findProductById(id) {
     const products = await fetch(`${baseURL}product/${id}`);
     const json = await convertToJson(products);
-    console.log({json});
     return json.Result;
   }
 }

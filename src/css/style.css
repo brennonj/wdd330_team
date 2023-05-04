@@ -118,8 +118,8 @@ button {
   padding: 0.25em;
   border-radius: 50%;
   font-size: 0.7em;
-  top: 5px;
-  left: 13px;
+  top: 8px;
+  left: 14px;
 }
 /* End cart icon styles */
 
@@ -240,7 +240,7 @@ button {
 
 .cart-footer {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   font-weight: 700;
 }
 
