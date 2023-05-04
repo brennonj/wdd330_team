@@ -1,3 +1,3 @@
-import { countCartContents } from './utils.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
-countCartContents();
+loadHeaderFooter();

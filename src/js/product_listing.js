@@ -1,11 +1,16 @@
 import ProductData from './ProductData.mjs';
 import ProductListing from './ProductList.mjs';
+import { getParams } from './utils.mjs';
 
-const dataSource = new ProductData('tents');
 let element = document.querySelector('.product-list');
-if (element === undefined) {
-  element = document.querySelector('.cart-product-list');
-}
-const listing = new ProductListing('Tents', dataSource, element);
+// if (element === undefined) {
+//   element = document.querySelector('.cart-product-list');
+// }
+
+const category = getParams('category');
+const dataSource = new ProductData();
+const listing = new ProductListing(category.toLowerCase(), dataSource, element);
 
 listing.init();
+
+document.querySelector('#category').innerText = category;
