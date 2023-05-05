@@ -77,6 +77,9 @@ header {
   margin-top: -1.7em;
 }
 /* utility classes */
+.title {
+  text-transform: capitalize;
+}
 .highlight {
   color: var(--tertiary-color);
 }
@@ -96,6 +99,38 @@ button {
 }
 /* End utility classes */
 
+/* icon-grid on home page */
+.grid-item {
+  list-style: none;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  text-align: center;
+}
+
+.grid-item img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.grid-item a{
+  text-decoration: none;
+  color: black;
+
+}
+.grid-item a:visited{
+  color: black;
+}
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* end icon-grid */
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
@@ -109,7 +144,7 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-/*-- julia added this */
+
 /* cart-counter */
 .cart-count {
   position: absolute;
