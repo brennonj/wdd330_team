@@ -1,6 +1,6 @@
 import ProductData from './ProductData.mjs';
 import ProductListing from './ProductList.mjs';
-import {loadHeaderFooter } from './utils.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
 const dataSource = new ProductData('tents');
 let element = document.querySelector('.product-list');
@@ -10,4 +10,3 @@ if (element === undefined) {
 loadHeaderFooter();
 const listing = new ProductListing('Tents', dataSource, element);
 listing.init();
-

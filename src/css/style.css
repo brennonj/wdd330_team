@@ -113,12 +113,11 @@ button {
   max-height: 100px;
 }
 
-.grid-item a{
+.grid-item a {
   text-decoration: none;
   color: black;
-
 }
-.grid-item a:visited{
+.grid-item a:visited {
   color: black;
 }
 .icon-grid {
