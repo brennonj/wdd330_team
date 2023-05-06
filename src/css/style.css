@@ -118,8 +118,8 @@ button {
   padding: 0.25em;
   border-radius: 50%;
   font-size: 0.7em;
-  top: 0;
-  left: 4px;
+  top: 8px;
+  left: 14px;
 }
 /* End cart icon styles */
 
@@ -130,6 +130,25 @@ button {
   max-width: 600px;
   margin: auto;
 }
+
+.product-categories {
+  display: flex;
+  justify-content: space-between;
+  margin: 70px 0;
+}
+
+.product-categories img {
+  width: 250px;
+  height: 250px;
+}
+
+.product-categories img:hover {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px rgb(163, 163, 163);
+}
+
 .products {
   padding: 0.5em;
 }
@@ -165,6 +184,11 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+.listing-img {
+  display: flex;
+  justify-content: center;
+}
 /* End product list card */
 
 .product-detail {
@@ -175,6 +199,7 @@ button {
 
 .product-detail img {
   width: 100%;
+  margin: 10px 0 20px 0;
 }
 
 /* Start cart list card styles */
@@ -215,7 +240,7 @@ button {
 
 .cart-footer {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   font-weight: 700;
 }
 
