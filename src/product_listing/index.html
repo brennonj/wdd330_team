@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/main.js" type="module"></script>
     <script src="/js/product_listing.js" type="module"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
-        <section class="products">
-            <h2>Top Products: <span id="category"></span></h2>
-            <ul class="product-list"></ul>
-        </section>
+      <div class="sort-options">
+        <label for="sort-select" class="sort-select">Sort by:</label>
+        <select id="sort-select" class="sort-select">
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+        </select>
+      </div>
+      <section class="products">
+        <h2>Top Products: <span id="category"></span></h2>
+        <ul class="product-list"></ul>
+      </section>
     </main>
     <footer id="main-footer"></footer>
-</body>
-
+  </body>
 </html>
