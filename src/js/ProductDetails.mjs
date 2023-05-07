@@ -37,6 +37,18 @@ export default class ProductDetails {
       cart.push(item);
     }
 
+    //-----this is to animate the cart:
+    //first we get the icon for the cart
+    const cartIcon = document.querySelector('#cart-icon');
+    //then we add a class to the icon so we can animate it with css
+    cartIcon.classList.add('animate');
+    
+    // then we remove the animation class after the animation is all done
+    cartIcon.addEventListener('animationend', function () {
+      cartIcon.classList.remove('animate');
+    });
+    ////---animation ended
+
     setLocalStorage('so-cart', cart);
     countCartContents();
   }

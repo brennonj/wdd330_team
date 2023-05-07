@@ -109,7 +109,7 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-/*-- julia added this */
+
 /* cart-counter */
 .cart-count {
   position: absolute;
@@ -121,6 +121,16 @@ button {
   top: 8px;
   left: 14px;
 }
+
+/* cart animation */
+.cart-icon {
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+.cart-icon.animate {
+  transform: rotate(360deg);
+}
+
 /* End cart icon styles */
 
 .mission {
