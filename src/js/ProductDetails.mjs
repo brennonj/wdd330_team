@@ -44,7 +44,7 @@ export default class ProductDetails {
     cartIcon.classList.add('animate');
     
     // then we remove the animation class after the animation is all done
-    cartIcon.addEventListener('animationend', function () {
+    cartIcon.addEventListener('transitionend', function () {
       cartIcon.classList.remove('animate');
     });
     ////---animation ended
