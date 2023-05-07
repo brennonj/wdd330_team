@@ -11,7 +11,6 @@ const sortSelect = document.querySelector('#sort-select');
 
 sortSelect.addEventListener('change', () => {
   const sortCriteria = sortSelect.value;
-  console.log(sortCriteria);
   if (sortCriteria === 'name') {
     listing.sortByName();
   } else if (sortCriteria === 'price') {
