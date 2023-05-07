@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, countCartContents } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
@@ -21,6 +21,7 @@ function addEventListenersToRemoveBtns(cartItems) {
       );
       cartItems.splice(targetItemIndex, 1);
       setLocalStorage('so-cart', cartItems);
+      countCartContents();
       renderCartContents();
     });
   });
