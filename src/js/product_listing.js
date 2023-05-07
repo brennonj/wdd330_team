@@ -6,7 +6,17 @@ const element = document.querySelector('.product-list');
 const category = getParams('category');
 const dataSource = new ProductData();
 const listing = new ProductListing(category.toLowerCase(), dataSource, element);
+document.querySelector('#category').innerText = category;
+const sortSelect = document.querySelector('#sort-select');
+
+sortSelect.addEventListener('change', () => {
+  const sortCriteria = sortSelect.value;
+  console.log(sortCriteria);
+  if (sortCriteria === 'name') {
+    listing.sortByName();
+  } else if (sortCriteria === 'price') {
+    listing.sortByPrice();
+  }
+});
 
 listing.init();
-
-document.querySelector('#category').innerText = category;
