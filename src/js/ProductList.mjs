@@ -7,18 +7,29 @@ export default class ProductListing {
     this.listElement = listElement;
   }
   async init() {
-    const list = await this.dataSource.getData(this.category);
-    // const filterResults = this.filterResults(list);
-    renderListWithTemplate(
-      productCardTemplate,
-      this.listElement,
-      list
-    );
+    this.list = await this.dataSource.getData(this.category);
+
+    renderListWithTemplate(productCardTemplate, this.listElement, this.list);
   }
 
   filterResults(arr) {
     const filterCriteria = ['880RR', '985RF', '985PR', '344YJ'];
     return filterCriteria.map((id) => arr.filter((item) => item.Id === id)[0]);
+  }
+
+  render() {
+    const listHtml = this.list.map(productCardTemplate).join('');
+    this.listElement.innerHTML = listHtml;
+  }
+
+  sortByPrice() {
+    this.list.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    this.render();
+  }
+
+  sortByName() {
+    this.list.sort((a, b) => a.Name.localeCompare(b.Name));
+    this.render();
   }
 }
 

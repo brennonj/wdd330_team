@@ -110,6 +110,17 @@ button {
   fill: gray;
 }
 
+/* sort-box */
+.sort-options {
+  display: flex;
+  justify-content: center;
+}
+.sort-select {
+  padding: 4px;
+}
+
+/* end sort-box */
+
 /* cart-counter */
 .cart-count {
   position: absolute;
