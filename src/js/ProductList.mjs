@@ -1,35 +1,59 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate } from './utils.mjs';
 
-export default class ProductListing {
+function productCardTemplate(product) {
+  return `<li class="product-card">
+  <a href="/product_pages/index.html?product=${product.Id}">
+  <img
+    src="${product.Images.PrimaryMedium}"
+    alt="Image of ${product.Name}"
+  />
+  <h3 class="card_brand">${product.Brand.Name}</h3>
+  <h2 class="card_name">${product.Name}</h2>
+  <p class="product-card_price">$${product.FinalPrice}</p></a>
+</li>`;
+}
+
+export default class ProductList {
   constructor(category, dataSource, listElement) {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.sort = null;
   }
+
   async init() {
-    const list = await this.dataSource.getData();
-    // list = list.filter(filterResults);
+    const list = await this.dataSource.getData(this.category);
+    this.renderList(list);
+
+    document.querySelector('.title').innerHTML = this.category;
+  }
+
+  renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 
-}
+  sortList(sortCriteria) {
+    this.sort = sortCriteria;
 
-function productCardTemplate(product) {
-  return `<li class="product-card">
-  <a href="product_pages/index.html?product=${product.Id}">
-  <img
-    src="${product.Image}"
-    alt="Image of ${product.Name}"
-  />
-  <h3 class="card__brand">${product.Brand.Name}</h3>
-  <h2 class="card__name">${product.Name}</h2>
-  <p class="product-card__price">$${product.FinalPrice}</p></a>
-</li>`;
-}
+    const listItems = [...this.listElement.children];
+    listItems.sort((a, b) => {
+      const aData = a.querySelector(
+        '.card_name, .product-card_price'
+      ).textContent;
+      const bData = b.querySelector(
+        '.card_name, .product-card_price'
+      ).textContent;
 
-// function filterResults(item) {
-//   const filterCriteria = ["880RR", "985RF", "985PR", "344YJ"];
-//   let Id = toString(item.Id);
-//   console.log(filterCriteria.find(Id));
-//   return !(filterCriteria.find(item.Id)) === undefined;
-// }
+      if (this.sort === 'name') {
+        return aData.localeCompare(bData);
+      } else if (this.sort === 'price') {
+        const aPrice = parseFloat(aData.slice(1));
+        const bPrice = parseFloat(bData.slice(1));
+        return aPrice - bPrice;
+      }
+    });
+
+    this.listElement.innerHTML = '';
+    listItems.forEach((item) => this.listElement.appendChild(item));
+  }
+}
