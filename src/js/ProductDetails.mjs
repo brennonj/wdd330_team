@@ -42,7 +42,7 @@ export default class ProductDetails {
     const cartIcon = document.querySelector('#cart-icon');
     //then we add a class to the icon so we can animate it with css
     cartIcon.classList.add('animate');
-    
+
     // then we remove the animation class after the animation is all done
     cartIcon.addEventListener('transitionend', function () {
       cartIcon.classList.remove('animate');
@@ -50,7 +50,9 @@ export default class ProductDetails {
     ////---animation ended
 
     setLocalStorage('so-cart', cart);
-    countCartContents();
+
+    const qty = countCartContents();
+    document.querySelector('.cart-count').innerHTML = qty;
   }
 
   renderProductDetails(selector) {

@@ -8,17 +8,36 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="../js/main.js" type="module"></script>
+    <script src="../js/CheckoutProcess.mjs" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
 
     <main class="divider">
-      <p>Hello</p>
+      <form method="post">
+        <input name="fname" placeholder="first name" required />
+        <input name="lname" placeholder="last name" required />
+        <input name="street" placeholder="street" required />
+        <input name="city" placeholder="city" required />
+        <input name="state" placeholder="state" required />
+        <input name="zip" placeholder="zip" required />
+        <input name="cardNumber" placeholder="1234123412341234" required />
+        <input name="expiration" placeholder="expiration" required />
+        <input name="code" placeholder="code" required />
+        <button type="submit">Submit</button>
+      </form>
+
+      <div>
+        <p>Subtotal: $<span class="cart-total"></span></p>
+        <p>Shipping Estimate: $<span class="shipping"></span></p>
+        <p>Tax: $<span class="tax"></span></p>
+        <p>Order Total: $<span class="order-total"></span></p>
+      </div>
     </main>
 
     <footer id="main-footer"></footer>
-    <script src="../js/main.js" type="module"></script>
   </body>
 </html>
