@@ -2,6 +2,7 @@ import {
   getLocalStorage,
   setLocalStorage,
   countCartContents,
+  calculateTotal,
 } from './utils.mjs';
 
 function renderCartContents() {
@@ -19,13 +20,14 @@ function addEventListenersToRemoveBtns(cartItems) {
     const removeBtn = document.querySelector(`[data-id="${item.Id}"]`);
 
     removeBtn.addEventListener('click', () => {
-      const cartItems = getLocalStorage('so-cart');
-      const targetItemIndex = cartItems.findIndex(
+      const cartStuff = getLocalStorage('so-cart');
+      const targetItemIndex = cartStuff.findIndex(
         (cartItem) => cartItem.Id === item.Id
       );
-      cartItems.splice(targetItemIndex, 1);
-      setLocalStorage('so-cart', cartItems);
-      countCartContents();
+      cartStuff.splice(targetItemIndex, 1);
+      setLocalStorage('so-cart', cartStuff);
+      const qty = countCartContents();
+      document.querySelector('.cart-count').innerHTML = qty;
       renderCartContents();
     });
   });
@@ -54,12 +56,6 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-
-function calculateTotal(items) {
-  let total = 0;
-  items.forEach((item) => (total += item.FinalPrice * item.Quantity));
-  return total;
-}
 
 function renderTotal(cartItems) {
   const htmlCartFooter = document.querySelector('.cart-footer');

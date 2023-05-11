@@ -63,7 +63,7 @@ export function countCartContents() {
   if (items) {
     items.forEach((item) => (qty += item.Quantity));
   }
-  document.querySelector('.cart-count').innerHTML = qty;
+  return qty;
 }
 
 export async function loadTemplate(path) {
@@ -76,9 +76,32 @@ export async function loadTemplate(path) {
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate('../partials/header.html');
   const headerHtml = qs('#main-header');
-  renderWithTemplate(headerTemplate, headerHtml, countCartContents);
+  renderWithTemplate(headerTemplate, headerHtml);
+  const qty = countCartContents();
+  document.querySelector('.cart-count').innerHTML = qty;
 
   const footerTemplate = await loadTemplate('../partials/footer.html');
   const footerHtml = qs('#main-footer');
   renderWithTemplate(footerTemplate, footerHtml);
+}
+
+export function calculateTotal(items) {
+  let cartProducts = items;
+  if (!cartProducts) {
+    cartProducts = getLocalStorage('so-cart');
+  }
+  let total = 0;
+  cartProducts.forEach((item) => (total += item.FinalPrice * item.Quantity));
+  return total;
+}
+
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
 }
