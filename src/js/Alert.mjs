@@ -18,7 +18,7 @@ export default class Alert {
     }
   }
 
-  async createAlerts() {
+  createAlerts() {
     let section = document.createElement('section');
     section.classList.add('alert-list');
 
