@@ -18,25 +18,64 @@
   <header class="divider" id="main-header"></header>
 
   <main class="divider">
-    <form method="post" id="checkout-form">
-      <input name="fname" placeholder="first name" required />
-      <input name="lname" placeholder="last name" required />
-      <input name="street" placeholder="street" required />
-      <input name="city" placeholder="city" required />
-      <input name="state" placeholder="state" required />
-      <input name="zip" placeholder="zip" required />
-      <input name="cardNumber" placeholder="1234123412341234" value="1234123412341234" required />
-      <input name="expiration" placeholder="08/23" value="08/27" required />
-      <input name="code" placeholder="123" value="123" required />
-      <button type="submit">Submit</button>
-    </form>
+    <h2>Checkout</h2>
 
-    <div>
-      <p>Subtotal: $<span class="cart-total"></span></p>
-      <p>Shipping Estimate: $<span class="shipping"></span></p>
-      <p>Tax: $<span class="tax"></span></p>
-      <p>Order Total: $<span class="order-total"></span></p>
+    <div class="order-details">
+
+      <form method="post" id="checkout-form" class="checkout-form">
+        <h3 class="divider">Personal Information</h3>
+        <div class="form-control">
+          <label for="fname">First Name</label>
+          <input name="fname" id="fname" placeholder="First Name" required />
+        </div>
+        <div class="form-control">
+          <label for="lname">Last Name</label>
+          <input name="lname" id="lname" placeholder="Last Name" required />
+        </div>
+        <div class="form-control">
+          <label for="street">Street</label>
+          <input name="street" id="street" placeholder="Street" required />
+        </div>
+        <div class="form-control">
+          <label for="city">City</label>
+          <input name="city" id="city" placeholder="City" required />
+        </div>
+        <div class="form-control">
+          <label for="state">State</label>
+          <input name="state" id="state" placeholder="State" required />
+        </div>
+        <div class="form-control">
+          <label for="zip">Zip</label>
+          <input name="zip" id="zip" placeholder="Zip" required />
+        </div>
+        <h3 class="divider">Payment Information</h3>
+        <div class="form-control">
+          <label for="cardNumber">Card Number</label>
+          <input name="cardNumber" id="cardNumber" placeholder="1234123412341234" value="1234123412341234" required />
+        </div>
+        <div class="form-control">
+          <label for="expiration">Expiration</label>
+          <input name="expiration" id="expiration" placeholder="08/23" value="08/27" required />
+        </div>
+        <div class="form-control">
+          <label for="code">Security Code</label>
+          <input name="code" id="code" placeholder="123" value="123" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <div>
+        <div class="order-summary">
+          <h3 class="divider">Your Order</h3>
+          <p>Subtotal: <span class="cart-total"></span></p>
+          <p>Shipping Estimate: <span class="shipping"></span></p>
+          <p class="divider">Tax: <span class="tax"></span></p>
+          <p class="total">Order Total: <span class="order-total"></span></p>
+        </div>
+      </div>
+
     </div>
+
   </main>
 
   <footer id="main-footer"></footer>

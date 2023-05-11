@@ -50,10 +50,10 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
-    qs('.cart-total').innerHTML = this.itemTotal.toFixed(2);
-    qs('.tax').innerHTML = this.tax.toFixed(2);
-    qs('.shipping').innerHTML = this.shipping.toFixed(2);
-    qs('.order-total').innerHTML = this.orderTotal.toFixed(2);
+    qs('.cart-total').innerHTML = `$${this.itemTotal.toFixed(2)}`;
+    qs('.tax').innerHTML = `$${this.tax.toFixed(2)}`;
+    qs('.shipping').innerHTML = `$${this.shipping.toFixed(2)}`;
+    qs('.order-total').innerHTML = `$${this.orderTotal.toFixed(2)}`;
   }
 
   async checkout(form) {
