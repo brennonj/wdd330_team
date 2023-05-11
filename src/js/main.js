@@ -1,5 +1,5 @@
-import { updateCartCount } from './cartCount';
 import Alert from './Alert.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
-updateCartCount('null');
 await (new Alert()).init();
+loadHeaderFooter();
