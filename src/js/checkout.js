@@ -9,5 +9,10 @@ checkoutProcess.init();
 const checkoutForm = document.querySelector('#checkout-form');
 checkoutForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  const checkStatus = checkoutForm.checkValidity();
+  checkoutForm.reportValidity();
+  if(checkStatus){
+
   checkoutProcess.checkout(checkoutForm);
+  }
 });

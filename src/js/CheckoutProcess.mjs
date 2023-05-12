@@ -2,8 +2,10 @@ import {
   calculateTotal,
   countCartContents,
   getLocalStorage,
+  setLocalStorage,
   qs,
   formDataToJSON,
+  alertMessage,
 } from './utils.mjs';
 
 function packageItems(items) {
@@ -70,7 +72,13 @@ export default class CheckoutProcess {
     try {
       const response = await this.dataSource.checkout(jsonFormData);
       console.log({ response });
+      setLocalStorage('so-cart', []);
+      location.assign('/checkout/success.html');
     } catch (e) {
+      for (let message in e.message) {
+        alertMessage(e.message[message]);
+      }
+
       console.log({ e });
     }
   }
