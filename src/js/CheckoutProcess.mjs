@@ -7,10 +7,6 @@ import {
   setLocalStorage,
 } from './utils.mjs';
 
-import { toast as Toast } from './Toast.mjs';
-
-console.log({ Toast });
-
 function packageItems(items) {
   return items.map((item) => ({
     id: item.Id,
@@ -84,15 +80,12 @@ export default class CheckoutProcess {
 
     // call the checkout method in our ExternalServices module and send it our data object.
     try {
-      const response = await this.dataSource.checkout(jsonFormData);
+      await this.dataSource.checkout(jsonFormData);
       setLocalStorage('so-cart', []);
-      const qty = countCartContents();
-      document.querySelector('.cart-count').innerHTML = qty;
-      this.clearOrderDetails();
-      TToast.success(response.message);
+      window.location.href = './success.html';
     } catch (e) {
       for (let key in e.message) {
-        Toast.error(e.message[key]);
+        console.log(e.message[key]);
       }
     }
   }

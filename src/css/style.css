@@ -22,14 +22,17 @@ body {
   font-size: var(--font-base);
   color: var(--dark-grey);
 }
+
 img {
   max-width: 100%;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
 }
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -39,23 +42,28 @@ header {
   text-align: right;
   font-family: var(--font-headline);
 }
+
 .logo img {
   width: 60px;
   height: 60px;
 }
+
 .logo a {
   text-decoration: none;
   color: var(--font-body);
 }
+
 .hero {
   position: relative;
 }
+
 .hero .logo {
   position: absolute;
   left: calc(50% - 60px);
   bottom: -10px;
   background-color: white;
 }
+
 .logo--square {
   font-size: var(--small-font);
   width: 110px;
@@ -68,14 +76,17 @@ header {
   align-items: center;
   line-height: 1;
 }
+
 .logo--square img {
   width: 90px;
   height: 90px;
   margin-top: -1.3em;
 }
+
 .logo--square > div {
   margin-top: -1.7em;
 }
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -91,8 +102,13 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
+}
+
+.mb {
+  margin-bottom: 15px !important;
 }
 /* End utility classes */
 
@@ -339,40 +355,19 @@ button {
   display: none;
 }
 
-.toast-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 9999;
+.success {
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 3px solid rgb(0, 168, 0);
+  border-radius: 15px;
+  background-color: rgb(172, 235, 172);
+  text-align: center;
 }
 
-.toast {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  max-width: 300px;
-  word-wrap: break-word;
-  z-index: 9999;
+.success h2 {
+  margin-top: 5px;
 }
-
-.toast-success {
-  background-color: #4CAF50;
-  color: #fff;
-}
-
-.toast-error {
-  background-color: #f44336;
-  color: #fff;
-}
-
-.toast-close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-}
-
 
 @media screen and (min-width: 500px) {
   body {
@@ -389,7 +384,8 @@ button {
 }
 
 @media (max-width: 600px) {
-  .checkout-form {
+  .checkout-form,
+  .success {
     width: 90%;
   }
 }
