@@ -110,6 +110,10 @@ button {
 .mb {
   margin-bottom: 15px !important;
 }
+
+.mt {
+  margin-top: 15px !important;
+}
 /* End utility classes */
 
 /* Cart icon styles */
@@ -212,6 +216,27 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+}
+
+.full-price {
+  border: red 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(247, 193, 193);
+  color: rgb(146, 0, 0);
+  font-weight: 600;
+  text-decoration:line-through;
+  font-size: .8em;
+}
+
+.discount {
+  border: green 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(143, 236, 143);
+  color: rgb(0, 110, 42);
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .card__brand {
