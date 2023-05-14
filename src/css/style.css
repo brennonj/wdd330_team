@@ -22,14 +22,17 @@ body {
   font-size: var(--font-base);
   color: var(--dark-grey);
 }
+
 img {
   max-width: 100%;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
 }
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -39,23 +42,28 @@ header {
   text-align: right;
   font-family: var(--font-headline);
 }
+
 .logo img {
   width: 60px;
   height: 60px;
 }
+
 .logo a {
   text-decoration: none;
   color: var(--font-body);
 }
+
 .hero {
   position: relative;
 }
+
 .hero .logo {
   position: absolute;
   left: calc(50% - 60px);
   bottom: -10px;
   background-color: white;
 }
+
 .logo--square {
   font-size: var(--small-font);
   width: 110px;
@@ -68,14 +76,17 @@ header {
   align-items: center;
   line-height: 1;
 }
+
 .logo--square img {
   width: 90px;
   height: 90px;
   margin-top: -1.3em;
 }
+
 .logo--square > div {
   margin-top: -1.7em;
 }
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -91,8 +102,17 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
+}
+
+.mb {
+  margin-bottom: 15px !important;
+}
+
+.mt {
+  margin-top: 15px !important;
 }
 /* End utility classes */
 
@@ -196,6 +216,27 @@ button {
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+}
+
+.full-price {
+  border: red 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(247, 193, 193);
+  color: rgb(146, 0, 0);
+  font-weight: 600;
+  text-decoration:line-through;
+  font-size: .8em;
+}
+
+.discount {
+  border: green 3px solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(143, 236, 143);
+  color: rgb(0, 110, 42);
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .card__brand {
@@ -339,6 +380,20 @@ button {
   display: none;
 }
 
+.success {
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 3px solid rgb(0, 168, 0);
+  border-radius: 15px;
+  background-color: rgb(172, 235, 172);
+  text-align: center;
+}
+
+.success h2 {
+  margin-top: 5px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -354,7 +409,8 @@ button {
 }
 
 @media (max-width: 600px) {
-  .checkout-form {
+  .checkout-form,
+  .success {
     width: 90%;
   }
 }

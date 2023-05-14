@@ -4,6 +4,7 @@ import {
   getLocalStorage,
   qs,
   formDataToJSON,
+  setLocalStorage,
 } from './utils.mjs';
 
 function packageItems(items) {
@@ -28,8 +29,10 @@ export default class CheckoutProcess {
 
   init() {
     this.list = getLocalStorage(this.key);
-    this.calculateItemSummary();
-    this.calculateOrderTotal();
+    if (this.list.length) {
+      this.calculateItemSummary();
+      this.calculateOrderTotal();
+    }
   }
 
   calculateItemSummary() {
@@ -56,6 +59,15 @@ export default class CheckoutProcess {
     qs('.order-total').innerHTML = `$${this.orderTotal.toFixed(2)}`;
   }
 
+  clearOrderDetails() {
+    qs('.cart-total').innerHTML = '';
+    qs('.tax').innerHTML = '';
+    qs('.shipping').innerHTML = '';
+    qs('.order-total').innerHTML = '';
+
+    document.querySelector('#checkout-form').reset();
+  }
+
   async checkout(form) {
     // build the data object from the calculated fields, the items in the cart, and the information entered into the form
 
@@ -68,10 +80,13 @@ export default class CheckoutProcess {
 
     // call the checkout method in our ExternalServices module and send it our data object.
     try {
-      const response = await this.dataSource.checkout(jsonFormData);
-      console.log({ response });
+      await this.dataSource.checkout(jsonFormData);
+      setLocalStorage('so-cart', []);
+      window.location.href = './success.html';
     } catch (e) {
-      console.log({ e });
+      for (let key in e.message) {
+        console.log(e.message[key]);
+      }
     }
   }
 }

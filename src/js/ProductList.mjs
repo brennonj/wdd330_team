@@ -35,11 +35,17 @@ export default class ProductListing {
 function productCardTemplate(product) {
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
-  <div class="listing-img">
-    <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
-  </div>
-  <h3 class="card__brand">${product.Brand.Name}</h3>
-  <h2 class="card__name">${product.Name}</h2>
-  <p class="product-card__price">$${product.FinalPrice}</p></a>
+    <div class="listing-img">
+      <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
+    </div>
+    <h3 class="card__brand">${product.Brand.Name}</h3>
+    <h2 class="card__name">${product.Name}</h2>
+    <p class="product-card__price mt mb">
+      <span class="full-price">$${product.SuggestedRetailPrice}</span>
+    </p>
+    <p class="product-card__price">
+      <span class="discount">$${product.FinalPrice}</span>
+    </p>
+  </a>
 </li>`;
 }
