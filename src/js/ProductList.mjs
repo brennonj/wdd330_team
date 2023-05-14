@@ -33,6 +33,17 @@ export default class ProductListing {
 }
 
 function productCardTemplate(product) {
+  let screenWidth = screen.width;
+  let imageSource = product.Images.PrimarySmall;
+  if (screenWidth > 640) {
+    imageSource = product.Images.PrimaryMedium;
+  }
+  if (screenWidth > 1200) {
+    imageSource = product.Images.PrimaryLarge;
+  }
+  if (screenWidth > 1500) {
+    imageSource = product.Images.PrimaryExtraLarge;
+  }
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
     <div class="listing-img">
